@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
-import { Counter } from 'k6/metrics';
+import { Counter, Trend } from 'k6/metrics';
 
 export const options = {
   vus: 10,
@@ -8,6 +8,7 @@ export const options = {
   thresholds: {
     http_req_duration: ['p(95)<250'],
     my_counter: ['count>10'],
+    response_time_news_page: ['p(95)<150', 'p(99)<200'],
   },
 };
 
